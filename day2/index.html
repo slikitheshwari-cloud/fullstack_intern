@@ -3,32 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>My Website</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
+<!-- Navigation -->
+
 <header>
-    <h1>My Website</h1>
+
+    <div class="logo">
+        MyWebsite
+    </div>
 
     <nav>
-        <a href="index.html">🏠 Home</a>
-        <a href="blog.html">📝 Blog</a>
+
+        <a href="index.html" class="active">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="#contact">Contact</a>
+
     </nav>
+
 </header>
 
-<main>
+<!-- Hero Section -->
 
-    <h2>Welcome to My Website</h2>
+<section class="hero">
 
-    <p>
-        This is the Home page created using HTML.
-    </p>
+    <div class="hero-content">
 
-</main>
+        <h1>Learn Full Stack Development</h1>
+
+        <p>
+            Build modern and responsive websites using HTML, CSS and JavaScript.
+            Start your web development journey today.
+        </p>
+
+        <a href="blog.html" class="btn">
+            Explore Blogs
+        </a>
+
+    </div>
+
+</section>
+
+<!-- Features -->
+
+<section class="features">
+
+    <h2>Why Learn With Us?</h2>
+
+    <div class="feature-container">
+
+        <div class="feature-card">
+
+            <h3>💻 HTML</h3>
+
+            <p>
+                Learn how to build the structure of professional websites.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>🎨 CSS</h3>
+
+            <p>
+                Design beautiful and responsive webpages with modern layouts.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>⚡ JavaScript</h3>
+
+            <p>
+                Make websites interactive with dynamic features.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Contact -->
+
+<section id="contact" class="contact">
+
+<h2>Contact Us</h2>
+
+<form>
+
+<input
+type="text"
+placeholder="Enter Your Name"
+required>
+
+<input
+type="email"
+placeholder="Enter Your Email"
+required>
+
+<textarea
+placeholder="Write Your Message"
+rows="6"></textarea>
+
+<button type="submit">
+
+Send Message
+
+</button>
+
+</form>
+
+</section>
+
+<!-- Footer -->
 
 <footer>
-    <p>© 2026 My Website | All Rights Reserved</p>
+
+<p>
+
+© 2026 MyWebsite | Designed by Likitheshwari
+
+</p>
+
 </footer>
 
 </body>
