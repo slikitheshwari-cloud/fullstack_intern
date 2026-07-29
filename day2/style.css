@@ -314,3 +314,40 @@ width:90%;
 }
 
 }
+
+.add-blog{
+
+width:70%;
+margin:50px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+
+}
+
+.add-blog h2{
+
+margin-bottom:20px;
+text-align:center;
+
+}
+
+.add-blog input,
+.add-blog textarea{
+
+width:100%;
+padding:15px;
+margin-bottom:20px;
+border-radius:8px;
+border:1px solid #ccc;
+
+}
+
+#message{
+
+margin-top:20px;
+font-weight:bold;
+text-align:center;
+
+}
