@@ -1,35 +1,52 @@
 const express = require("express");
 
 const app = express();
-
 const PORT = 3000;
 
-// Middleware to read JSON data
+// Middleware
 app.use(express.json());
 
-// GET Route
+// JavaScript array to store blogs
+let blogs = [];
+
+// Home Route
 app.get("/", (req, res) => {
-    res.send("Welcome to My Express Server!");
+    res.send("Welcome to Blog API");
 });
 
-// GET Route
-app.get("/about", (req, res) => {
-    res.send("This is the About Page.");
+// Get all blogs
+app.get("/blogs", (req, res) => {
+    res.json(blogs);
 });
 
-// POST Route
-app.post("/blog", (req, res) => {
+// Add a new blog
+app.post("/blogs", (req, res) => {
 
-    const blog = req.body;
+    const { title, content } = req.body;
 
-    res.json({
-        message: "Blog received successfully!",
-        data: blog
+    // Validation
+    if (!title || !content) {
+        return res.status(400).json({
+            message: "Title and Content are required."
+        });
+    }
+
+    const newBlog = {
+        id: blogs.length + 1,
+        title,
+        content
+    };
+
+    blogs.push(newBlog);
+
+    res.status(201).json({
+        message: "Blog added successfully!",
+        blog: newBlog
     });
 
 });
 
 // Start Server
 app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });
