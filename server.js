@@ -1,6 +1,7 @@
 const express = require("express");
-
+const cors = require("cors");
 const app = express();
+app.use(cors());
 const PORT = 3000;
 
 // Middleware
@@ -22,7 +23,7 @@ app.get("/blogs", (req, res) => {
 // Add a new blog
 app.post("/blogs", (req, res) => {
 
-    const { title, content } = req.body;
+    const { title, image, content } = req.body;
 
     // Validation
     if (!title || !content) {
@@ -32,10 +33,11 @@ app.post("/blogs", (req, res) => {
     }
 
     const newBlog = {
-        id: blogs.length + 1,
-        title,
-        content
-    };
+    id: blogs.length + 1,
+    title,
+    image,
+    content
+};
 
     blogs.push(newBlog);
 
@@ -50,7 +52,7 @@ app.post("/blogs", (req, res) => {
 app.put("/blogs/:id", (req, res) => {
 
     const id = parseInt(req.params.id);
-    const { title, content } = req.body;
+    const { title, image, content } = req.body;
 
     const blog = blogs.find(blog => blog.id === id);
 
@@ -67,6 +69,7 @@ app.put("/blogs/:id", (req, res) => {
     }
 
     blog.title = title;
+    blog.image = image;
     blog.content = content;
 
     res.json({
@@ -97,6 +100,9 @@ app.delete("/blogs/:id", (req, res) => {
     });
 
 });
+
+
+
 
 // Start Server
 app.listen(PORT, () => {

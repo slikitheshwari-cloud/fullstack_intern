@@ -16,8 +16,21 @@ fetch("http://localhost:3000/blogs")
             card.className = "blog-card";
 
             card.innerHTML = `
-                <h3>${blog.title}</h3>
-                <p>${blog.content}</p>
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" alt="Blog Image">
+
+                <div class="blog-content">
+
+                    <h2>${blog.title}</h2>
+
+                    <p class="date">
+                        📅 July 2026 | By Admin
+                    </p>
+
+                    <p>${blog.content}</p>
+
+                    <a href="#" class="btn-small">Read More</a>
+
+                </div>
             `;
 
             blogList.appendChild(card);

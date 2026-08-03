@@ -1,44 +1,93 @@
 const form = document.getElementById("blogForm");
-const title = document.getElementById("title");
-const content = document.getElementById("content");
 const message = document.getElementById("message");
 const container = document.getElementById("blogContainer");
 
-form.addEventListener("submit", function(event){
+// Load all blogs
+async function loadBlogs() {
+    try {
+        const response = await fetch("http://localhost:3000/blogs");
+        const blogs = await response.json();
 
-    event.preventDefault();
+        container.innerHTML = "";
 
-    if(title.value.trim()==="" || content.value.trim()===""){
+        blogs.forEach(blog => {
 
-        message.style.color="red";
-        message.textContent="Please fill all fields.";
+            const card = document.createElement("div");
+            card.className = "blog-card";
+
+            card.innerHTML = `
+                <img src="${blog.image}" alt="${blog.title}">
+
+                <div class="blog-content">
+
+                    <h2>${blog.title}</h2>
+
+                    <p class="date">
+                        📅 August 2026 | By Admin
+                    </p>
+
+                    <p>${blog.content}</p>
+
+                    <a href="#" class="btn-small">
+                        Read More
+                    </a>
+
+                </div>
+            `;
+
+            container.appendChild(card);
+
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Add new blog
+form.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    const title = document.getElementById("title").value.trim();
+    const image = document.getElementById("image").value.trim();
+    const content = document.getElementById("content").value.trim();
+
+    if (title === "" || image === "" || content === "") {
+
+        message.style.color = "red";
+        message.textContent = "Please fill all fields.";
 
         return;
     }
 
-    message.style.color="green";
-    message.textContent="Blog Added Successfully!";
+    const response = await fetch("http://localhost:3000/blogs", {
 
-    const card=document.createElement("div");
+        method: "POST",
 
-    card.classList.add("blog-card");
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-    card.innerHTML=`
+        body: JSON.stringify({
 
-    <div class="blog-content">
+            title,
+            image,
+            content
 
-    <h2>${title.value}</h2>
+        })
 
-    <p>${content.value}</p>
+    });
 
-    <a href="#" class="btn-small">Read More</a>
+    const data = await response.json();
 
-    </div>
-
-    `;
-
-    container.prepend(card);
+    message.style.color = "green";
+    message.textContent = data.message;
 
     form.reset();
 
+    loadBlogs();
+
 });
+
+loadBlogs();
